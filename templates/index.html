@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Search Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Meme Search Engine</h1>
+        <form action="{{ url_for('search_memes') }}" method="get">
+            <input 
+                type="text" 
+                name="query" 
+                placeholder="Search for memes..." 
+                required
+                minlength="2"
+            >
+            <button type="submit">Search Memes</button>
+        </form>
+    </div>
+</body>
+</html>

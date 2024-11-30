@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Results for "{{ query }}"</h1>
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        
+        {% if memes %}
+            <div class="results-grid">
+                {% for meme in memes %}
+                    <div class="meme-card">
+                        <img src="{{ meme.image_url }}" alt="{{ meme.title }}">
+                        <div class="meme-details">
+                            <h3>{{ meme.title }}</h3>
+                            <p>Source: {{ meme.source }}</p>
+                            {% if meme.get('upvotes') is not none %}
+                                <p>Upvotes: {{ meme.upvotes }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No memes found. Try a different search query.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}" class="back-btn">New Search</a>
+    </div>
+</body>
+</html>
